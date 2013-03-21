@@ -27,6 +27,16 @@ class Application_Router_Cli extends Zend_Controller_Router_Abstract
 				{
 					echo "Invalid action $action.\n", exit ();
 				}
+
+				// check for params
+                               if ( !empty($arguments) ) {
+                                   foreach ($arguments as $arg ) {
+                                       $arg_pair = explode('=', $arg);
+                                       if ( 2 === count($arg_pair) ) {
+                                           $dispatcher->setParam($arg_pair[0], $arg_pair[1]);
+                                       }
+                                   }
+                               }	
 			}
 		}
 
